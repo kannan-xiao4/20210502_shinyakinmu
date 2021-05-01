@@ -1,20 +1,40 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BreadFactoryManager : MonoBehaviour
+public class BreadFactoryManager
 {
-    [SerializeField] private Transform laneParent;
-    [SerializeField] private List<GameObject> labelSource;
-    [SerializeField] private List<GameObject> breadSource;
-    [SerializeField] private List<GameObject> labeledBreadSource;
+    private readonly Label.Factory _labelFactory;
+    private readonly Bread.Factory _breadFactory;
+    private readonly LabeledBread.Factory _labeledBreadFactory;
 
-    private const int INITIAL_BREAD_COUNT = 3;
+    private Vector3 labelInitialPosition = new Vector3(-2, 3, 0);
+    private Vector3 breadInitialPosition = new Vector3(0, 0, 0);
 
-    private void Start()
+    public BreadFactoryManager(
+        Label.Factory labelFactory,
+        Bread.Factory breadFactory,
+        LabeledBread.Factory labeledBreadFactory
+    )
     {
-        // for (var i = 0; i < INITIAL_BREAD_COUNT; i++)
-        // {
-        //     Instantiate(breadSource[Random.Range(0, 2)], laneParent);
-        // }
+        _labelFactory = labelFactory;
+        _breadFactory = breadFactory;
+        _labeledBreadFactory = labeledBreadFactory;
+    }
+
+    public void CreateNewLabel()
+    {
+        var newOne = _labelFactory.Create();
+        newOne.transform.position = labelInitialPosition;
+    }
+
+    public void CreateNewBread()
+    {
+        var newOne = _breadFactory.Create();
+        newOne.transform.position = breadInitialPosition;
+    }
+
+    public void CreateNewLabeledBread(Vector3 position)
+    {
+        var newOne = _labeledBreadFactory.Create();
+        newOne.transform.position = position;
     }
 }

@@ -1,11 +1,17 @@
 using UnityEngine;
+using Zenject;
 
 public abstract class Draggable : MonoBehaviour
 {
-    [SerializeField] private GameObject self;
+    protected BreadFactoryManager _manager;
 
+    [Inject]
+    private void Construct(BreadFactoryManager manager)
+    {
+        _manager = manager;
+    }
+    
     private Camera cam;
-    private Vector3 initialPosition;
 
     private Vector3 screenPoint;
     private Vector3 offset;
@@ -15,7 +21,6 @@ public abstract class Draggable : MonoBehaviour
     protected virtual void Awake()
     {
         cam = Camera.main;
-        initialPosition = transform.position;
     }
 
     private void OnMouseDown()
@@ -51,8 +56,6 @@ public abstract class Draggable : MonoBehaviour
 
     protected virtual void OnDestroy()
     {
-        var newOne = Instantiate(self, initialPosition, Quaternion.identity);
-        newOne.SetActive(true);
         cam = null;
         dropped = null;
     }
