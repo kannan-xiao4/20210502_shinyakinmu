@@ -13,8 +13,20 @@ namespace Bread
 
     public abstract class BreadBase : Acceptable
     {
+        private bool isReady;
+
+        public void SetReady()
+        {
+            isReady = true;
+        }
+        
         public override void OnDropped(Draggable draggable)
         {
+            if (!isReady)
+            {
+                return;
+            }
+            
             if (draggable is LabelBase)
             {
                 var labelType = draggable is CreamLabel ? Label.Type.Cream : Label.Type.Redbeans;

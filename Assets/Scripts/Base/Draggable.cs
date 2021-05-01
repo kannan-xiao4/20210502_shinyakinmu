@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Base
@@ -5,6 +6,7 @@ namespace Base
     public abstract class Draggable : MonoBehaviour
     {
         private Camera cam;
+        private Vector3 initialPosition;
 
         private Vector3 screenPoint;
         private Vector3 offset;
@@ -14,6 +16,11 @@ namespace Base
         protected virtual void Awake()
         {
             cam = Camera.main;
+        }
+
+        protected void Start()
+        {
+            initialPosition = transform.position;
         }
 
         private void OnMouseDown()
@@ -35,6 +42,10 @@ namespace Base
             if (dropped != null)
             {
                 dropped.OnDropped(this);
+            }
+            else
+            {
+                transform.position = initialPosition;
             }
         }
 

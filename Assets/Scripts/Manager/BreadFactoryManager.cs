@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using LabeledBread;
 using UnityEngine;
 using Zenject;
@@ -9,6 +10,15 @@ namespace Manager
         private readonly Label.LabelBase.Factory _labelFactory;
         private readonly Bread.BreadBase.Factory _breadFactory;
         private readonly LabeledBreadBase.Factory _labeledBreadFactory;
+
+        private static readonly Vector3[] initialPositons =
+        {
+            new Vector3(1.5f, 0f, 0f),
+            new Vector3(-2f, 0f, 0f),
+            new Vector3(-5.5f, 0f, 0f)
+        };
+
+        private List<Bread.BreadBase> currentBread = new List<Bread.BreadBase>();
 
         public BreadFactoryManager(
             Label.LabelBase.Factory labelFactory,
@@ -29,7 +39,21 @@ namespace Manager
         public void CreateNewBread()
         {
             var newOne = _breadFactory.Create();
-            newOne.transform.position = Vector3.zero;
+            currentBread.Add(newOne);
+            if (currentBread.Count > initialPositons.Length)
+            {
+                currentBread.RemoveAt(0);
+            }
+
+            if (currentBread.Count == initialPositons.Length)
+            {
+                for (var i = 0; i < initialPositons.Length; i++)
+                {
+                    currentBread[i].transform.position = initialPositons[i];
+                }
+
+                currentBread[0].SetReady();
+            }
         }
 
         public void CreateNewLabeledBread(Label.Type labelType, Bread.Type breadType, Vector3 position)
@@ -42,7 +66,11 @@ namespace Manager
         {
             CreateNewLabel(Label.Type.Cream);
             CreateNewLabel(Label.Type.Redbeans);
-            CreateNewBread();
+
+            for (var i = 0; i < initialPositons.Length; i++)
+            {
+                CreateNewBread();
+            }
         }
     }
 }
