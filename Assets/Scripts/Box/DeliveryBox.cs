@@ -1,13 +1,17 @@
+using Base;
 using LabeledBread;
 
-public class DeliveryBox : Acceptable
+namespace Box
 {
-    public override void OnDropped(Draggable draggable)
+    public class DeliveryBox : Acceptable
     {
-        if (draggable is LabeledBreadBase)
+        public override void OnDropped(Draggable draggable)
         {
-            base.OnDropped(draggable);
-            _manager.CreateNewBread();
+            if (draggable is LabeledBreadBase)
+            {
+                base.OnDropped(draggable);
+                _manager.CreateNewBread();
+            }
         }
     }
 }

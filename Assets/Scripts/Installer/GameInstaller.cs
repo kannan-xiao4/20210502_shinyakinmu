@@ -1,6 +1,7 @@
 using Bread;
 using Label;
 using LabeledBread;
+using Manager;
 using UnityEngine;
 using Zenject;
 

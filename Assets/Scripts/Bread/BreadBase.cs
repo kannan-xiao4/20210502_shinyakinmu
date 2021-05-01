@@ -1,3 +1,4 @@
+using Base;
 using Label;
 using UnityEngine;
 using Zenject;

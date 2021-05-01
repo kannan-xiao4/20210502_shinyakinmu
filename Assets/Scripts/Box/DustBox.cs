@@ -1,13 +1,17 @@
+using Base;
 using LabeledBread;
 
-public class DustBox : Acceptable
+namespace Box
 {
-    public override void OnDropped(Draggable draggable)
+    public class DustBox : Acceptable
     {
-        if (draggable is LabeledBreadBase)
+        public override void OnDropped(Draggable draggable)
         {
-            base.OnDropped(draggable);
-            _manager.CreateNewBread();
+            if (draggable is LabeledBreadBase)
+            {
+                base.OnDropped(draggable);
+                _manager.CreateNewBread();
+            }
         }
     }
 }
