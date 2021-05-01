@@ -10,7 +10,8 @@ namespace Box
             if (draggable is LabeledBreadBase)
             {
                 base.OnDropped(draggable);
-                _manager.CreateNewBread();
+                _gameManager.AddScrapScore();
+                _breadFactoryManager.CreateNewBread();
             }
         }
     }

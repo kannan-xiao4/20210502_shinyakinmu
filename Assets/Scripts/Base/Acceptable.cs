@@ -6,12 +6,17 @@ namespace Base
 {
     public abstract class Acceptable : MonoBehaviour
     {
-        protected BreadFactoryManager _manager;
+        protected GameManager _gameManager;
+        protected BreadFactoryManager _breadFactoryManager;
 
         [Inject]
-        private void Construct(BreadFactoryManager manager)
+        private void Construct(
+            GameManager gameManager,
+            BreadFactoryManager breadFactoryManager
+        )
         {
-            _manager = manager;
+            _gameManager = gameManager;
+            _breadFactoryManager = breadFactoryManager;
         }
     
         public virtual void OnDropped(Draggable draggable)

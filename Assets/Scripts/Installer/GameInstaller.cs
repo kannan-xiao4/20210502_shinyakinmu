@@ -13,10 +13,14 @@ public class GameInstaller : MonoInstaller
     [SerializeField] private GameObject redBeansBreadPrefab;
     [SerializeField] private GameObject creamLabeledPrefab;
     [SerializeField] private GameObject redbeansLabeledPrefab;
+    [SerializeField] private GameObject creamLabeledRedbeansBreadPrefab;
+    [SerializeField] private GameObject redbeansLabeledCreamBreadPrefab;
 
     // ReSharper disable Unity.PerformanceAnalysis
     public override void InstallBindings()
     {
+        Container.Bind<GameManager>().AsSingle();
+        
         Container
             .Bind(typeof(BreadFactoryManager), typeof(IInitializable))
             .To<BreadFactoryManager>()
@@ -37,6 +41,10 @@ public class GameInstaller : MonoInstaller
             .FromComponentInNewPrefab(creamLabeledPrefab);
         Container.BindFactory<RedBeansLabeledRedBeansBread, RedBeansLabeledRedBeansBread.Factory>()
             .FromComponentInNewPrefab(redbeansLabeledPrefab);
+        Container.BindFactory<CreamLabeledRedBeansBread, CreamLabeledRedBeansBread.Factory>()
+            .FromComponentInNewPrefab(creamLabeledRedbeansBreadPrefab);
+        Container.BindFactory<RedBeansLabeledCreamBread, RedBeansLabeledCreamBread.Factory>()
+            .FromComponentInNewPrefab(redbeansLabeledCreamBreadPrefab);
         Container.Bind<LabeledBreadBase.Factory>().AsSingle();
     }
 }

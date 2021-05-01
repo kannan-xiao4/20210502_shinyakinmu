@@ -19,8 +19,8 @@ namespace Bread
             {
                 var labelType = draggable is CreamLabel ? Label.Type.Cream : Label.Type.Redbeans;
                 var breadType = this is CreamBread ? Type.Cream : Type.Redbeans;
-                _manager.CreateNewLabeledBread(labelType, breadType, transform.position);
-                _manager.CreateNewLabel(labelType);
+                _breadFactoryManager.CreateNewLabeledBread(labelType, breadType, transform.position);
+                _breadFactoryManager.CreateNewLabel(labelType);
                 base.OnDropped(draggable);
                 DestroyImmediate(gameObject);
             }
