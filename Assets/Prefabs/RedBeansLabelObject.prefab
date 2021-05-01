@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 316631799307219022}
   - component: {fileID: 2410216156600610261}
   - component: {fileID: 360175336774340821}
-  - component: {fileID: -5903948239140834223}
+  - component: {fileID: -4975398722166025902}
   m_Layer: 0
-  m_Name: CreamLabeledObject
+  m_Name: CreamLabelObject 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ac59188b98ffd463f88bbcaa9059d8f7, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: 9de2719cb0c0b4bd6b4547328d8e8aa6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,7 +119,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.15}
+  m_Offset: {x: 0, y: -0.2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -130,9 +130,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 2.5}
+  m_Size: {x: 3, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-5903948239140834223
+--- !u!114 &-4975398722166025902
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,6 +141,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 316631799307219023}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65119ece35994a18804554afab4d10eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 234d7c4a078c408cbccb2f3004a64a7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

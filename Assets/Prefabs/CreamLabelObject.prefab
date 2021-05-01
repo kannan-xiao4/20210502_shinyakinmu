@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 316631799307219022}
   - component: {fileID: 2410216156600610261}
   - component: {fileID: 360175336774340821}
-  - component: {fileID: -3938882232223328965}
+  - component: {fileID: -2864348728683602548}
   m_Layer: 0
   m_Name: CreamLabelObject
   m_TagString: Untagged
@@ -132,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-3938882232223328965
+--- !u!114 &-2864348728683602548
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,6 +141,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 316631799307219023}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d24c4d2e293a47bcba1e95869cd7b57, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f6f4bd0d92d4560b43c2c6256153833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

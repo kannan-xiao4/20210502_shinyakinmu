@@ -321,7 +321,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 115269264}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: -3, z: 0}
+  m_LocalPosition: {x: 2, y: -3.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -504,7 +504,6 @@ GameObject:
   - component: {fileID: 672930674}
   - component: {fileID: 672930676}
   - component: {fileID: 672930677}
-  - component: {fileID: 672930678}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -570,12 +569,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e876e65b999456b9609244e784ec08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  labelPrefabs:
-  - {fileID: 316631799307219023, guid: 86d6d71c522634d65a09bdc10b3e3617, type: 3}
-  breadPrefabs:
-  - {fileID: 316631799307219023, guid: be19cfb18cda345af814cac67699c5fb, type: 3}
-  labeledPrefabs:
-  - {fileID: 316631799307219023, guid: 2292f3ff78ddb4b5b919215f83ffe2f3, type: 3}
+  creamLabelPrefab: {fileID: 316631799307219023, guid: 86d6d71c522634d65a09bdc10b3e3617, type: 3}
+  redbeansLabelPrefab: {fileID: 316631799307219023, guid: b3dc8682b85f040cc858545c8f64db76, type: 3}
+  creamBreadPrefab: {fileID: 316631799307219023, guid: be19cfb18cda345af814cac67699c5fb, type: 3}
+  redBeansBreadPrefab: {fileID: 316631799307219023, guid: c20ad2c8e6c9a4168bbc80d20154252a, type: 3}
+  creamLabeledPrefab: {fileID: 316631799307219023, guid: 2292f3ff78ddb4b5b919215f83ffe2f3, type: 3}
+  redbeansLabeledPrefab: {fileID: 316631799307219023, guid: 5fe27990c14d944b0ba0b243b3f185c7, type: 3}
 --- !u!114 &672930677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,18 +595,6 @@ MonoBehaviour:
   _useSceneContext: 0
   _context: {fileID: 0}
   _bindType: 0
---- !u!114 &672930678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 672930673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0500573c2c4e42cab276ff355b499bed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1846376083
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,7 +711,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1846376083}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: -3, z: 0}
+  m_LocalPosition: {x: -2, y: -3.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -834,7 +821,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8611355229764817666}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7, y: 0, z: 0}
+  m_LocalPosition: {x: 7.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

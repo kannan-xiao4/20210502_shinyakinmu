@@ -1,23 +1,14 @@
 using UnityEngine;
-using Zenject;
 
 public abstract class Draggable : MonoBehaviour
 {
-    protected BreadFactoryManager _manager;
-
-    [Inject]
-    private void Construct(BreadFactoryManager manager)
-    {
-        _manager = manager;
-    }
-    
     private Camera cam;
 
     private Vector3 screenPoint;
     private Vector3 offset;
 
     private Acceptable dropped;
-    
+
     protected virtual void Awake()
     {
         cam = Camera.main;
@@ -26,7 +17,8 @@ public abstract class Draggable : MonoBehaviour
     private void OnMouseDown()
     {
         screenPoint = cam.WorldToScreenPoint(transform.position);
-        offset = transform.position - cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+        offset = transform.position -
+                 cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
     }
 
     private void OnMouseDrag()
@@ -47,6 +39,14 @@ public abstract class Draggable : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         dropped = other.gameObject.GetComponent<Acceptable>();
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (dropped == null)
+        {
+            dropped = other.gameObject.GetComponent<Acceptable>();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)

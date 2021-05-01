@@ -1,18 +1,19 @@
+using LabeledBread;
 using UnityEngine;
+using Zenject;
 
-public class BreadFactoryManager
+public class BreadFactoryManager : IInitializable
 {
-    private readonly Label.Factory _labelFactory;
-    private readonly Bread.Factory _breadFactory;
-    private readonly LabeledBread.Factory _labeledBreadFactory;
+    private readonly Label.LabelBase.Factory _labelFactory;
+    private readonly Bread.BreadBase.Factory _breadFactory;
+    private readonly LabeledBreadBase.Factory _labeledBreadFactory;
 
-    private Vector3 labelInitialPosition = new Vector3(-2, 3, 0);
     private Vector3 breadInitialPosition = new Vector3(0, 0, 0);
 
     public BreadFactoryManager(
-        Label.Factory labelFactory,
-        Bread.Factory breadFactory,
-        LabeledBread.Factory labeledBreadFactory
+        Label.LabelBase.Factory labelFactory,
+        Bread.BreadBase.Factory breadFactory,
+        LabeledBreadBase.Factory labeledBreadFactory
     )
     {
         _labelFactory = labelFactory;
@@ -20,10 +21,9 @@ public class BreadFactoryManager
         _labeledBreadFactory = labeledBreadFactory;
     }
 
-    public void CreateNewLabel()
+    public void CreateNewLabel(Label.Type type)
     {
-        var newOne = _labelFactory.Create();
-        newOne.transform.position = labelInitialPosition;
+        _labelFactory.Create(type);
     }
 
     public void CreateNewBread()
@@ -32,9 +32,16 @@ public class BreadFactoryManager
         newOne.transform.position = breadInitialPosition;
     }
 
-    public void CreateNewLabeledBread(Vector3 position)
+    public void CreateNewLabeledBread(Label.Type labelType, Bread.Type breadType, Vector3 position)
     {
-        var newOne = _labeledBreadFactory.Create();
+        var newOne = _labeledBreadFactory.Create(labelType, breadType);
         newOne.transform.position = position;
+    }
+
+    void IInitializable.Initialize()
+    {
+        CreateNewLabel(Label.Type.Cream);
+        CreateNewLabel(Label.Type.Redbeans);
+        CreateNewBread();
     }
 }
