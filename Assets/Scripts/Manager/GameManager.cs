@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -29,7 +30,7 @@ namespace Manager
 
 
         private int wageScore = 0;
-        
+
         public IObservable<int> WageScore
         {
             get
@@ -102,7 +103,29 @@ namespace Manager
         public void Report()
         {
             var tweet = $"夜勤で{wageScore:#,0}円稼ぎました。 #深夜勤務 https://unityroom.com/games/shinyakinmu2";
-            Application.OpenURL ("https://twitter.com/intent/tweet?text=" + UnityWebRequest.EscapeURL(tweet));
+            TweetUnity.Tweet(tweet);
+        }
+    }
+}
+
+internal static class TweetUnity
+{
+#if UNITY_WEBGL
+        [DllImport("__Internal")]
+        private static extern void OpenWindow(string url);
+#endif
+
+    public static void Tweet(string tweet)
+    {
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+#if UNITY_WEBGL
+                OpenWindow($"https://twitter.com/intent/tweet?text={UnityWebRequest.EscapeURL(tweet)}");
+#endif
+        }
+        else
+        {
+            Application.OpenURL($"https://twitter.com/intent/tweet?text={UnityWebRequest.EscapeURL(tweet)}");
         }
     }
 }
