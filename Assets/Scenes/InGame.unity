@@ -43,7 +43,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 11
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -118,8 +118,6 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-    maxJobWorkers: 0
-    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -175,7 +173,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -234,7 +231,6 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -341,7 +337,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.7058824}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -389,7 +384,6 @@ MonoBehaviour:
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
 --- !u!1 &109685386
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +509,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
 --- !u!223 &113791539
 Canvas:
   m_ObjectHideFlags: 0
@@ -576,6 +569,7 @@ MonoBehaviour:
   scrapScore: {fileID: 1280962721}
   failedScore: {fileID: 1622511780}
   exitButton: {fileID: 1327237823}
+  animator: {fileID: 1230310482}
 --- !u!1 &115269264
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,7 +643,6 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -883,7 +876,6 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1010,14 +1002,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e876e65b999456b9609244e784ec08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  creamLabelPrefab: {fileID: 316631799307219023, guid: 86d6d71c522634d65a09bdc10b3e3617, type: 3}
-  redbeansLabelPrefab: {fileID: 316631799307219023, guid: b3dc8682b85f040cc858545c8f64db76, type: 3}
-  creamBreadPrefab: {fileID: 316631799307219023, guid: be19cfb18cda345af814cac67699c5fb, type: 3}
-  redBeansBreadPrefab: {fileID: 316631799307219023, guid: c20ad2c8e6c9a4168bbc80d20154252a, type: 3}
-  creamLabeledPrefab: {fileID: 316631799307219023, guid: 2292f3ff78ddb4b5b919215f83ffe2f3, type: 3}
-  redbeansLabeledPrefab: {fileID: 316631799307219023, guid: 5fe27990c14d944b0ba0b243b3f185c7, type: 3}
-  creamLabeledRedbeansBreadPrefab: {fileID: 316631799307219023, guid: f08b3f5a79df04a93974dcb975f0bbfd, type: 3}
-  redbeansLabeledCreamBreadPrefab: {fileID: 316631799307219023, guid: eab3fd399bb444f1e9833f790bc5b505, type: 3}
+  creamLabelPrefab: {fileID: 316631799307219023, guid: 86d6d71c522634d65a09bdc10b3e3617,
+    type: 3}
+  redbeansLabelPrefab: {fileID: 316631799307219023, guid: b3dc8682b85f040cc858545c8f64db76,
+    type: 3}
+  creamBreadPrefab: {fileID: 316631799307219023, guid: be19cfb18cda345af814cac67699c5fb,
+    type: 3}
+  redBeansBreadPrefab: {fileID: 316631799307219023, guid: c20ad2c8e6c9a4168bbc80d20154252a,
+    type: 3}
+  creamLabeledPrefab: {fileID: 316631799307219023, guid: 2292f3ff78ddb4b5b919215f83ffe2f3,
+    type: 3}
+  redbeansLabeledPrefab: {fileID: 316631799307219023, guid: 5fe27990c14d944b0ba0b243b3f185c7,
+    type: 3}
+  creamLabeledRedbeansBreadPrefab: {fileID: 316631799307219023, guid: f08b3f5a79df04a93974dcb975f0bbfd,
+    type: 3}
+  redbeansLabeledCreamBreadPrefab: {fileID: 316631799307219023, guid: eab3fd399bb444f1e9833f790bc5b505,
+    type: 3}
 --- !u!114 &672930677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1128,7 +1128,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1209,7 +1208,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1240,7 +1238,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1230310478}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 74ad3bf4bbaa74c4391fdd170963f82d, type: 2}
   m_CullingMode: 0
@@ -1258,7 +1256,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1230310478}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: cb296d26703ad4b8a86bb1fd3e54b22e, type: 3}
@@ -1399,7 +1397,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1478,7 +1475,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1558,7 +1554,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -1603,7 +1598,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1715,7 +1709,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1794,7 +1787,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1873,7 +1865,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1989,7 +1980,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2068,7 +2058,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2168,7 +2157,6 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2278,7 +2266,6 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
