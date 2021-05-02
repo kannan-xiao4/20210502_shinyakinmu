@@ -21,7 +21,7 @@ namespace Base
     
         public virtual void OnDropped(Draggable draggable)
         {
-            Destroy(draggable.gameObject);
+            _breadFactoryManager.RemoveGameObject(draggable.gameObject);
         }
     }
 }

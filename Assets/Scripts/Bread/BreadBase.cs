@@ -67,7 +67,7 @@ namespace Bread
                 _breadFactoryManager.CreateNewLabeledBread(labelType, breadType, transform.position);
                 _breadFactoryManager.CreateNewLabel(labelType);
                 base.OnDropped(draggable);
-                DestroyImmediate(gameObject);
+                _breadFactoryManager.RemoveGameObject(gameObject);
             }
         }
 

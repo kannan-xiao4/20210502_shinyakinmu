@@ -4,6 +4,7 @@ using LabeledBread;
 using UniRx;
 using UnityEngine;
 using Zenject;
+using Object = UnityEngine.Object;
 
 namespace Manager
 {
@@ -25,6 +26,7 @@ namespace Manager
         };
 
         private List<Bread.BreadBase> currentBread = new List<Bread.BreadBase>();
+        private List<GameObject> currentObject = new List<GameObject>();
 
         public BreadFactoryManager(
             GameManager gameManager,
@@ -43,13 +45,16 @@ namespace Manager
 
         public void CreateNewLabel(Label.Type type)
         {
-            _labelFactory.Create(type);
+            var go = _labelFactory.Create(type);
+            currentObject.Add(go.gameObject);
         }
 
         public void CreateNewBread()
         {
             var newOne = _breadFactory.Create();
             currentBread.Add(newOne);
+            currentObject.Add(newOne.gameObject);
+
             if (currentBread.Count > initialPositons.Length)
             {
                 currentBread.RemoveAt(0);
@@ -73,20 +78,38 @@ namespace Manager
         {
             var newOne = _labeledBreadFactory.Create(labelType, breadType);
             newOne.transform.position = position;
+            currentObject.Add(newOne.gameObject);
             _soundManager.PlaySE(SE.Label);
+        }
+
+        public void RemoveGameObject(GameObject go)
+        {
+            currentObject.Remove(go);
+            Object.DestroyImmediate(go);
         }
 
         void IInitializable.Initialize()
         {
-            CreateNewLabel(Label.Type.Cream);
-            CreateNewLabel(Label.Type.Redbeans);
-
-            _gameManager.GameStart.Take(1).Subscribe(_ =>
+            _gameManager.GameStart.Subscribe(_ =>
             {
+                CreateNewLabel(Label.Type.Cream);
+                CreateNewLabel(Label.Type.Redbeans);
+
                 for (var i = 0; i < initialPositons.Length; i++)
                 {
                     CreateNewBread();
                 }
+            }).AddTo(_composite);
+
+            _gameManager.GameEnd.Subscribe(_ =>
+            {
+                foreach (var go in currentObject)
+                {
+                    Object.DestroyImmediate(go);
+                }
+
+                currentBread.Clear();
+                currentObject.Clear();
             }).AddTo(_composite);
         }
 
