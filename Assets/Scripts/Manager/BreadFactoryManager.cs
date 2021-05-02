@@ -13,10 +13,10 @@ namespace Manager
 
         private static readonly Vector3[] initialPositons =
         {
-            new Vector3(1.5f, 0f, 0f),
             new Vector3(-2f, 0f, 0f),
             new Vector3(-5.5f, 0f, 0f),
-            new Vector3(-9f, 0f, 0f)
+            new Vector3(-9f, 0f, 0f),
+            new Vector3(-12.5f, 0f, 0f)
         };
 
         private List<Bread.BreadBase> currentBread = new List<Bread.BreadBase>();
