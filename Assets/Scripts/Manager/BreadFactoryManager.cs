@@ -15,7 +15,8 @@ namespace Manager
         {
             new Vector3(1.5f, 0f, 0f),
             new Vector3(-2f, 0f, 0f),
-            new Vector3(-5.5f, 0f, 0f)
+            new Vector3(-5.5f, 0f, 0f),
+            new Vector3(-9f, 0f, 0f)
         };
 
         private List<Bread.BreadBase> currentBread = new List<Bread.BreadBase>();
@@ -45,11 +46,13 @@ namespace Manager
                 currentBread.RemoveAt(0);
             }
 
+            newOne.Initialize(initialPositons[currentBread.Count - 1]);
+
             if (currentBread.Count == initialPositons.Length)
             {
                 for (var i = 0; i < initialPositons.Length; i++)
                 {
-                    currentBread[i].transform.position = initialPositons[i];
+                    currentBread[i].MoveWithAnimation(initialPositons[i]);
                 }
 
                 currentBread[0].SetReady();

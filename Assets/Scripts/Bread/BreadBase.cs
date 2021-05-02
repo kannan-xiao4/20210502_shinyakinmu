@@ -1,7 +1,9 @@
+using System;
 using Base;
 using Label;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace Bread
 {
@@ -14,19 +16,50 @@ namespace Bread
     public abstract class BreadBase : Acceptable
     {
         private bool isReady;
+        private bool animationReady;
+        private Vector3 startPos;
+        private Vector3 targetPos;
+        private float startTime;
+        private float distance;
+
+        public void Initialize(Vector3 initPosition)
+        {
+            transform.position = initPosition;
+        }
+
+        public void MoveWithAnimation(Vector3 target)
+        {
+            startPos = transform.position;
+            targetPos = target;
+            distance = targetPos.x - startPos.x;
+            startTime = Time.time;
+            animationReady = true;
+        }
 
         public void SetReady()
         {
             isReady = true;
         }
-        
+
+        private void Update()
+        {
+            if (!animationReady || distance < 0.001f)
+            {
+                return;
+            }
+
+            var distCovered = (Time.time - startTime) * 3f;
+            var time = distCovered / distance;
+            transform.position = Vector3.Lerp(startPos, targetPos, time);
+        }
+
         public override void OnDropped(Draggable draggable)
         {
             if (!isReady)
             {
                 return;
             }
-            
+
             if (draggable is LabelBase)
             {
                 var labelType = draggable is CreamLabel ? Label.Type.Cream : Label.Type.Redbeans;
