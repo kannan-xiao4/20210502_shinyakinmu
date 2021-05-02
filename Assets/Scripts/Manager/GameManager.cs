@@ -102,7 +102,7 @@ namespace Manager
 
         public void Report()
         {
-            var tweet = $"夜勤で{wageScore:#,0}円稼ぎました。 #深夜勤務 https://unityroom.com/games/shinyakinmu2";
+            var tweet = $"夜勤で{wageScore:#,0}円稼ぎました。 #深夜勤務2 https://unityroom.com/games/shinyakinmu2";
             TweetUnity.Tweet(tweet);
         }
     }
@@ -117,6 +117,7 @@ internal static class TweetUnity
 
     public static void Tweet(string tweet)
     {
+        var tweetUrl = $"https://twitter.com/intent/tweet?text={UnityWebRequest.EscapeURL(tweet)}";
         if (Application.platform == RuntimePlatform.WebGLPlayer)
         {
 #if UNITY_WEBGL
@@ -125,7 +126,7 @@ internal static class TweetUnity
         }
         else
         {
-            Application.OpenURL($"https://twitter.com/intent/tweet?text={UnityWebRequest.EscapeURL(tweet)}");
+            Application.OpenURL(tweetUrl);
         }
     }
 }

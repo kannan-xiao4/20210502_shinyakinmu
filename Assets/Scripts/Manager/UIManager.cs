@@ -46,10 +46,10 @@ namespace Manager
 
         private void Start()
         {
+            _soundManager.PlayBGM(BGM.Title);
             titleButton.OnClickAsObservable()
                 .Subscribe(_ =>
                 {
-                    startAnimator.gameObject.SetActive(true);
                     startAnimator.Play("StartAnimation");
                     title.SetActive(false);
                 }).AddTo(this);
@@ -81,7 +81,6 @@ namespace Manager
                 {
                     _manager.StartGame();
                     _soundManager.PlayBGM(BGM.Others);
-                    startAnimator.gameObject.SetActive(false);
                 }).AddTo(this);
         }
 
@@ -96,6 +95,7 @@ namespace Manager
             returnTitleButton.OnClickAsObservable().Subscribe(_ =>
             {
                 _manager.ResetGame();
+                _soundManager.PlayBGM(BGM.Title);
                 title.SetActive(true);
                 result.SetActive(false);
             }).AddTo(this);
