@@ -15,13 +15,15 @@ namespace Manager
         [SerializeField] private Text failedScore;
         [SerializeField] private Button exitButton;
         [SerializeField] private Animator animator;
-        
+
         private GameManager _manager;
+        private SoundManager _soundManager;
 
         [Inject]
-        private void Construct(GameManager manager)
+        private void Construct(GameManager manager, SoundManager soundManager)
         {
             _manager = manager;
+            _soundManager = soundManager;
         }
 
         private void Start()
@@ -35,7 +37,15 @@ namespace Manager
             this.UpdateAsObservable()
                 .Where(_ => Input.anyKeyDown)
                 .Take(1)
-                .Subscribe(_ => animator.enabled = true)
+                .Subscribe(_ => animator.Play("StartAnimation"))
+                .AddTo(this);
+
+            var stateMachineTrigger = animator.GetBehaviour<ObservableStateMachineTrigger>();
+            stateMachineTrigger.OnStateEnterAsObservable()
+                .Subscribe(_ => _soundManager.PlayBGM(BGM.Start))
+                .AddTo(this);
+            stateMachineTrigger.OnStateExitAsObservable()
+                .Subscribe(_ => _soundManager.PlayBGM(BGM.Others))
                 .AddTo(this);
         }
     }

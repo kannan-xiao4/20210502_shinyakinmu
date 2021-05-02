@@ -5,6 +5,13 @@ namespace Manager
 {
     public class GameManager
     {
+        private readonly SoundManager _soundManager;
+
+        public GameManager(SoundManager soundManager)
+        {
+            _soundManager = soundManager;
+        }
+        
         private ReactiveProperty<int> creamBreadScore = new ReactiveProperty<int>(0);
         private ReactiveProperty<int> redBeansBreadScore = new ReactiveProperty<int>(0);
         private ReactiveProperty<int> scrapScore = new ReactiveProperty<int>(0);
@@ -36,11 +43,12 @@ namespace Manager
         public void AddFailedScore()
         {
             failedScore.Value++;
+            _soundManager.PlaySE(SE.Failed);
         }
 
         public void Exit()
         {
-            
+            _soundManager.PlaySE(SE.Exit);
         }
     }
 }

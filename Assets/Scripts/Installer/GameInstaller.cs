@@ -16,11 +16,14 @@ public class GameInstaller : MonoInstaller
     [SerializeField] private GameObject creamLabeledRedbeansBreadPrefab;
     [SerializeField] private GameObject redbeansLabeledCreamBreadPrefab;
 
+    [SerializeField] private GameObject soundManagerPrefab;
+
     // ReSharper disable Unity.PerformanceAnalysis
     public override void InstallBindings()
     {
         Container.Bind<GameManager>().AsSingle();
-        
+        Container.Bind<SoundManager>().FromComponentInNewPrefab(soundManagerPrefab).AsSingle().NonLazy();
+
         Container
             .Bind(typeof(BreadFactoryManager), typeof(IInitializable))
             .To<BreadFactoryManager>()

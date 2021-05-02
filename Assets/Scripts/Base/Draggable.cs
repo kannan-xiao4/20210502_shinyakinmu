@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Base
@@ -18,7 +17,7 @@ namespace Base
             cam = Camera.main;
         }
 
-        protected void Start()
+        protected virtual void Start()
         {
             initialPosition = transform.position;
         }

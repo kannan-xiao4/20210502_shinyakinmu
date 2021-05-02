@@ -7,6 +7,7 @@ namespace Manager
 {
     public class BreadFactoryManager : IInitializable
     {
+        private readonly SoundManager _soundManager;
         private readonly Label.LabelBase.Factory _labelFactory;
         private readonly Bread.BreadBase.Factory _breadFactory;
         private readonly LabeledBreadBase.Factory _labeledBreadFactory;
@@ -22,11 +23,13 @@ namespace Manager
         private List<Bread.BreadBase> currentBread = new List<Bread.BreadBase>();
 
         public BreadFactoryManager(
+            SoundManager soundManager,
             Label.LabelBase.Factory labelFactory,
             Bread.BreadBase.Factory breadFactory,
             LabeledBreadBase.Factory labeledBreadFactory
         )
         {
+            _soundManager = soundManager;
             _labelFactory = labelFactory;
             _breadFactory = breadFactory;
             _labeledBreadFactory = labeledBreadFactory;
@@ -50,6 +53,7 @@ namespace Manager
 
             if (currentBread.Count == initialPositons.Length)
             {
+                _soundManager.PlaySE(SE.Lane);
                 for (var i = 0; i < initialPositons.Length; i++)
                 {
                     currentBread[i].MoveWithAnimation(initialPositons[i]);
@@ -63,6 +67,7 @@ namespace Manager
         {
             var newOne = _labeledBreadFactory.Create(labelType, breadType);
             newOne.transform.position = position;
+            _soundManager.PlaySE(SE.Label);
         }
 
         void IInitializable.Initialize()
