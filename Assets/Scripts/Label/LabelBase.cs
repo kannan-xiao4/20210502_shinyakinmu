@@ -23,8 +23,8 @@ namespace Label
 
     public class CustomLabelFactory : IFactory<Type, LabelBase>
     {
-        private readonly Vector3 creamInitialPosition = new Vector3(-5, 3, 0);
-        private readonly Vector3 redbeansInitialPosition = new Vector3(-2, 3, 0);
+        private readonly Vector3 creamInitialPosition = new Vector3(-7, 3, 0);
+        private readonly Vector3 redbeansInitialPosition = new Vector3(-2.8f, 3, 0);
         private readonly CreamLabel.Factory _creamLabelFactory;
         private readonly RedBeansLabel.Factory _redbeansLabelFactory;
 

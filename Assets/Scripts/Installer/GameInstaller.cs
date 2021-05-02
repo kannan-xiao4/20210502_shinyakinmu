@@ -1,3 +1,4 @@
+using System;
 using Bread;
 using Label;
 using LabeledBread;
@@ -25,7 +26,7 @@ public class GameInstaller : MonoInstaller
         Container.Bind<SoundManager>().FromComponentInNewPrefab(soundManagerPrefab).AsSingle().NonLazy();
 
         Container
-            .Bind(typeof(BreadFactoryManager), typeof(IInitializable))
+            .Bind(typeof(BreadFactoryManager), typeof(IInitializable), typeof(IDisposable))
             .To<BreadFactoryManager>()
             .AsSingle();
 

@@ -45,8 +45,12 @@ namespace Manager
                 .Subscribe(_ => _soundManager.PlayBGM(BGM.Start))
                 .AddTo(this);
             stateMachineTrigger.OnStateExitAsObservable()
-                .Subscribe(_ => _soundManager.PlayBGM(BGM.Others))
-                .AddTo(this);
+                .Subscribe(_ =>
+                {
+                    _manager.Start();
+                    _soundManager.PlayBGM(BGM.Others);
+                    animator.gameObject.SetActive(false);
+                }).AddTo(this);
         }
     }
 }

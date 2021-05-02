@@ -46,6 +46,15 @@ namespace Manager
             _soundManager.PlaySE(SE.Failed);
         }
 
+        private Subject<Unit> gameStart = new Subject<Unit>();
+
+        public IObservable<Unit> GameStart => gameStart;
+
+        public void Start()
+        {
+            gameStart.OnNext(Unit.Default);
+        }
+        
         public void Exit()
         {
             _soundManager.PlaySE(SE.Exit);

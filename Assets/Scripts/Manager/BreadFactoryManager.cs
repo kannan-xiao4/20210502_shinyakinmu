@@ -1,12 +1,16 @@
+using System;
 using System.Collections.Generic;
 using LabeledBread;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
 namespace Manager
 {
-    public class BreadFactoryManager : IInitializable
+    public class BreadFactoryManager : IInitializable, IDisposable
     {
+        private readonly CompositeDisposable _composite = new CompositeDisposable();
+        private readonly GameManager _gameManager;
         private readonly SoundManager _soundManager;
         private readonly Label.LabelBase.Factory _labelFactory;
         private readonly Bread.BreadBase.Factory _breadFactory;
@@ -23,12 +27,14 @@ namespace Manager
         private List<Bread.BreadBase> currentBread = new List<Bread.BreadBase>();
 
         public BreadFactoryManager(
+            GameManager gameManager,
             SoundManager soundManager,
             Label.LabelBase.Factory labelFactory,
             Bread.BreadBase.Factory breadFactory,
             LabeledBreadBase.Factory labeledBreadFactory
         )
         {
+            _gameManager = gameManager;
             _soundManager = soundManager;
             _labelFactory = labelFactory;
             _breadFactory = breadFactory;
@@ -75,10 +81,18 @@ namespace Manager
             CreateNewLabel(Label.Type.Cream);
             CreateNewLabel(Label.Type.Redbeans);
 
-            for (var i = 0; i < initialPositons.Length; i++)
+            _gameManager.GameStart.Take(1).Subscribe(_ =>
             {
-                CreateNewBread();
-            }
+                for (var i = 0; i < initialPositons.Length; i++)
+                {
+                    CreateNewBread();
+                }
+            }).AddTo(_composite);
+        }
+
+        void IDisposable.Dispose()
+        {
+            _composite?.Dispose();
         }
     }
 }
