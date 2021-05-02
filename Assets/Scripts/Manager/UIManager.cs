@@ -40,6 +40,12 @@ namespace Manager
                 .Subscribe(_ => animator.Play("StartAnimation"))
                 .AddTo(this);
 
+            if (!animator.gameObject.activeInHierarchy)
+            {
+                _manager.Start();
+                return;
+            }
+            
             var stateMachineTrigger = animator.GetBehaviour<ObservableStateMachineTrigger>();
             stateMachineTrigger.OnStateEnterAsObservable()
                 .Subscribe(_ => _soundManager.PlayBGM(BGM.Start))
